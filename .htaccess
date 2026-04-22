@@ -1,0 +1,6 @@
+<Files ".env">
+    Require all denied
+</Files>
+ErrorDocument 403 /01/errors/403.php
+ErrorDocument 404 /01/errors/404.php
+ErrorDocument 500 /01/errors/500.php
