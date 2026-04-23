@@ -1,110 +1,106 @@
 <?php
-  require_once './env.php'
+require_once './env.php';
+
+$list_arr = [
+   "Home" => '/',
+   "Blog" => "/blog/",
+   "About" => '/about.php',
+   "Contact" => '/contact.php',
+];
 ?>
-<nav
-   class="flex py-2 px-4 md:px-8 bg-white border-b border-slate-300 dark:border-neutral-700 dark:bg-neutral-900 min-h-[68px] relative z-20"
-   aria-label="Main navigation">
-   <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4 w-full">
-      <a href="#"
-         class="min-w-9 inline-block focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded">
-         <span class="sr-only">Your Company</span>
-         <img src="https://readymadeui.com/logo-alt.svg" alt="readymadeui logo" class="h-9 w-auto" />
-      </a>
-
-      <div id="collapseMenu" tabindex="-1"
-         class="hidden lg:block max-lg:bg-white dark:max-lg:bg-neutral-900 max-lg:border-l max-lg:border-slate-300 dark:max-lg:border-neutral-700 max-lg:w-1/2 max-lg:fixed max-lg:top-0 max-lg:right-0 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto max-sm:w-full z-50 outline-none">
-
-         <div
-            class="py-2 px-4 flex justify-between items-center border-b border-slate-300 sticky top-0 bg-white dark:border-neutral-700 dark:bg-neutral-900 lg:hidden max-lg:min-h-[68px]">
-            <a href="#"
-               class="inline-block focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded">
-               <span class="sr-only">Your Company</span>
-               <img src="https://readymadeui.com/logo-alt.svg" alt="readymadeui logo dialog" class="h-9 w-auto" />
-            </a>
-            <button type="button" aria-controls="collapseMenu" id="toggleClose"
-               class="cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded">
-               <span class="sr-only">Close main menu</span>
-               <svg xmlns="http://www.w3.org/2000/svg" class="size-4 fill-slate-900 dark:fill-slate-50"
-                  aria-hidden="true" viewBox="0 0 329.269 329">
-                  <path
-                     d="M194.8 164.77 323.013 36.555c8.343-8.34 8.343-21.825 0-30.164-8.34-8.34-21.825-8.34-30.164 0L164.633 134.605 36.422 6.391c-8.344-8.34-21.824-8.34-30.164 0-8.344 8.34-8.344 21.824 0 30.164l128.21 128.215L6.259 292.984c-8.344 8.34-8.344 21.825 0 30.164a21.27 21.27 0 0 0 15.082 6.25c5.46 0 10.922-2.09 15.082-6.25l128.21-128.214 128.216 128.214a21.27 21.27 0 0 0 15.082 6.25c5.46 0 10.922-2.09 15.082-6.25 8.343-8.34 8.343-21.824 0-30.164zm0 0"
-                     data-original="#000000" />
-               </svg>
-            </button>
-         </div>
-
-         <ul class="flex flex-col gap-8 font-semibold text-sm text-slate-900 dark:text-slate-50 lg:flex-row max-lg:p-6">
-            <li>
-               <a href="#"
-                  class="hover:text-blue-700 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
-                  aria-current="page">Home</a>
-            </li>
-            <li>
-               <a href="#"
-                  class="hover:text-blue-700 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded">Features</a>
-            </li>
-            <li>
-               <a href="#"
-                  class="hover:text-blue-700 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded">Blog</a>
-            </li>
-            <li>
-               <a href="#"
-                  class="hover:text-blue-700 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded">About</a>
-            </li>
-            <li>
-               <a href="#"
-                  class="hover:text-blue-700 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded">Contact</a>
-            </li>
-         </ul>
+<header class="absolute inset-x-0 top-0 z-50">
+   <nav aria-label="Global" class="flex items-center justify-between p-6 lg:px-8">
+      <div class="flex lg:flex-1">
+         <a href="#" class="-m-1.5 p-1.5">
+            <span class="sr-only"><?= $ENV['COMPANY_NAME'] ?></span>
+            <img src="<?= $ENV['APP_BASE_PATH'] . $ENV['APP_ASSET_PATH'] . "/images/logo.png" ?>" alt="" class="h-8 w-auto" />
+         </a>
       </div>
-
-      <div class="flex items-center gap-4">
-         <a href="#"
-            class="text-slate-900 text-sm font-semibold hover:text-blue-700 dark:text-slate-50 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded">Log
-            in</a>
-         <a href="#"
-            class="py-2 px-3.5 text-sm rounded-md font-semibold cursor-pointer text-white border border-blue-600 bg-blue-600 hover:bg-blue-700 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">Sign
-            up</a>
-
-         <button type="button" aria-controls="collapseMenu" aria-expanded="false" aria-haspopup="true" id="toggleOpen"
-            class="cursor-pointer lg:hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded">
+      <div class="flex lg:hidden">
+         <button type="button" command="show-modal" commandfor="mobile-menu" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 dark:text-gray-200">
             <span class="sr-only">Open main menu</span>
-            <svg class="size-7 fill-slate-900 dark:fill-slate-50" aria-hidden="true" viewBox="0 0 20 20"
-               xmlns="http://www.w3.org/2000/svg">
-               <path fill-rule="evenodd"
-                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                  clip-rule="evenodd"></path>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
+               <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
          </button>
       </div>
-   </div>
-</nav>
+      <div class="hidden lg:flex lg:gap-x-12">
+         <?php 
+            foreach ($list_arr as $name => $url_suffix) {
+               $url = $ENV['APP_BASE_PATH'] . $url_suffix;
+               echo "<a href=\"{$url}\" class=\"text-sm/6 font-semibold text-gray-900 dark:text-white\">{$name}</a>";
+            }
+         ?>
+      </div>
+      <div class="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-6">
+         <a href="<?= $ENV['APP_BASE_PATH'] . '/login.php' ?>" 
+            class="text-sm/6 font-semibold text-gray-900 dark:text-white">Log in</a>
+         <a href="<?= $ENV['APP_BASE_PATH'] . '/signup.php' ?>" 
+            class="text-sm/6 font-semibold text-gray-900 dark:text-white">Sign Up</a>
+      </div>
+   </nav>
+   <el-dialog>
+      <dialog id="mobile-menu" class="backdrop:bg-transparent lg:hidden">
+         <div tabindex="0" class="fixed inset-0 focus:outline-none">
+            <el-dialog-panel class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 dark:bg-gray-900 dark:sm:ring-gray-100/10">
+               <div class="flex items-center justify-between">
+                  <a href="#" class="-m-1.5 p-1.5">
+                     <span class="sr-only"><?= $ENV['COMPANY_NAME'] ?></span>
+                     <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="" class="h-8 w-auto dark:hidden" />
+                     <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="" class="h-8 w-auto not-dark:hidden" />
+                  </a>
+                  <button type="button" command="close" commandfor="mobile-menu" class="-m-2.5 rounded-md p-2.5 text-gray-700 dark:text-gray-200">
+                     <span class="sr-only">Close menu</span>
+                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
+                        <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+                     </svg>
+                  </button>
+               </div>
+               <div class="mt-6 flow-root">
+                  <div class="-my-6 divide-y divide-gray-500/10 dark:divide-white/10">
+                     <div class="space-y-2 py-6">
+                        <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 dark:text-white dark:hover:bg-white/5">Product</a>
+                        <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 dark:text-white dark:hover:bg-white/5">Features</a>
+                        <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 dark:text-white dark:hover:bg-white/5">Marketplace</a>
+                        <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 dark:text-white dark:hover:bg-white/5">Company</a>
+                     </div>
+                     <div class="py-6">
+                        <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 dark:text-white dark:hover:bg-white/5">Log in</a>
+                        <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 dark:text-white dark:hover:bg-white/5">Log in</a>
+                     </div>
+                  </div>
+               </div>
+            </el-dialog-panel>
+         </div>
+      </dialog>
+   </el-dialog>
+</header>   
 <script>
-  const toggleOpen = document.getElementById('toggleOpen');
-  const toggleClose = document.getElementById('toggleClose');
-  const menu = document.getElementById('collapseMenu');
+   const toggleOpen = document.getElementById('toggleOpen');
+   const toggleClose = document.getElementById('toggleClose');
+   const menu = document.getElementById('collapseMenu');
 
-  let lastFocusedElement = null;
+   let lastFocusedElement = null;
 
-  function openMenu() {
-    lastFocusedElement = document.activeElement;
-    menu.classList.remove('hidden');
-    toggleOpen.setAttribute('aria-expanded', 'true');
-    menu.focus();
-  }
+   function openMenu() {
+      lastFocusedElement = document.activeElement;
+      menu.classList.remove('hidden');
+      toggleOpen.setAttribute('aria-expanded', 'true');
+      menu.focus();
+   }
 
-  function closeMenu() {
-    menu.classList.add('hidden');
-    toggleOpen.setAttribute('aria-expanded', 'false');
-    lastFocusedElement?.focus();
-  }
+   function closeMenu() {
+      menu.classList.add('hidden');
+      toggleOpen.setAttribute('aria-expanded', 'false');
+      lastFocusedElement?.focus();
+   }
 
-  toggleOpen.addEventListener('click', openMenu);
-  toggleClose.addEventListener('click', closeMenu);
+   toggleOpen.addEventListener('click', openMenu);
+   toggleClose.addEventListener('click', closeMenu);
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
-      closeMenu();
-    }
-  });
+   document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+         closeMenu();
+      }
+   });
 </script>
