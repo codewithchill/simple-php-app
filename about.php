@@ -1,5 +1,11 @@
 <?php
-  include './env.php'
+
+declare(strict_types=1);
+require_once './env.php';
+require_once './utils/log.php';
+
+log_user();
+// session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,10 +20,10 @@
     <?php
     include "components/nav.php";
     // include "components/hero.php";
-    // include "components/footer.php";
+    include "components/footer.php";
     ?>
   </div>
-  <script type="module" src="scripts/main.js"></script>
+  <script type="module" src="<?= $ENV['APP_BASE_PATH'] . $ENV['APP_ASSET_PATH'] . 'scripts/main.js' ?>"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1"></script>
 </body>
